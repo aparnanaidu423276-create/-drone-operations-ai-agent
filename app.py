@@ -167,16 +167,17 @@ def get_warnings(pilot, mission):
 drone = match_drone(mission, drone_df)
 
 if not drone.empty:
-    print("🚁 Drone Assigned:", drone.iloc[0]['model'])
+    print(" Drone Assigned:", drone.iloc[0]['model'])
 else:
-    print("🚁 No suitable drone")
+    print(" No suitable drone")
 
 warnings = get_warnings(
     pilots.iloc[0] if not pilots.empty else None, mission)
 
 if warnings:
-    print("⚠ Warning:")
+    print(" Warning:")
     for w in warnings:
         print("-", w)
 else:
+
     print("✔ No conflicts")
