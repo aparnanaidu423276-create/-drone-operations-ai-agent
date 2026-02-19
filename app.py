@@ -1,16 +1,14 @@
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import pandas as pd
+import streamlit as st
+from google.oauth2.service_account import Credentials
 
 scope = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive"
 ]
 
+creds_dict = st.secrets["gcp_service_account"]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name(
-    r"C:\Users\aparn\OneDrive\Desktop\credentials.json", scope)
-
+creds = Credentials.from_service_account_info(creds_dict, scopes=scope)
 
 client = gspread.authorize(creds)
 
@@ -181,3 +179,4 @@ if warnings:
 else:
 
     print("✔ No conflicts")
+
